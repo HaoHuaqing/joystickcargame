@@ -80,18 +80,25 @@ public class carcontrol : MonoBehaviour
 
     void Update()
     {
-        float JoystickY = Input.GetAxis("Horizontal");
-        Vector3 move = new Vector3(10 * (JoystickY+randNormal), carmoveforward, 0);
+        float JoystickX = Input.GetAxis("Horizontal");
+        Vector3 move = new Vector3(10 * (JoystickX+randNormal), carmoveforward, 0);
         transform.position = move;
         //Debug.Log(move);
         if (move.x <= (Bezier.pixel[pixelcount].x + 5) && move.x >= (Bezier.pixel[pixelcount].x + 0.5))
         {
             carmoveforward += carspeedY;
             pixelcount++;
+            pixelcount++;
         }
         else if (move.x <= (Bezier.pixel[pixelcount].x - 0.5) && move.x >= (Bezier.pixel[pixelcount].x - 5))
         {
             carmoveforward += carspeedY;
+            pixelcount++;
+            pixelcount++;
+        }
+        else
+        {
+            carmoveforward += carspeedY/2;
             pixelcount++;
         }
 
@@ -122,7 +129,7 @@ public class carcontrol : MonoBehaviour
         time = (int)timer;
         timetext.text = ("Time:" + time);
 
-        string[] temp = { randNormal.ToString(), ",", transform.position.x.ToString(), ",", Bezier.pixel[pixelcount-1].y.ToString(), "\r\n" };
+        string[] temp = { JoystickX.ToString(), ",", transform.position.x.ToString(), ",", Bezier.pixel[pixelcount-1].y.ToString(), "\r\n" };
         foreach (string t in temp)
         {
             using (StreamWriter writer = new StreamWriter(configPath, true, Encoding.UTF8))
