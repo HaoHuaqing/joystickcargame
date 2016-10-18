@@ -10,7 +10,7 @@ using System;
 public class carcontrol : MonoBehaviour
 {
     static List<string> mWriteTxt = new List<string>();
-    private string outpath;
+    private string configPath;
     public Text timetext;
     private float timer = 0f;
     private int time = 0;
@@ -61,7 +61,7 @@ public class carcontrol : MonoBehaviour
             //可以拿到表中任意一项数据
             filename = table["1"]["name"];
             //Debug.Log(filename);
-            outpath = "D:\\testDir\\" + filename + ".csv";
+            configPath = "D:\\testDir\\" + filename + ".csv";
             stdDev1 = float.Parse(table["2"]["name"]);
             stdDev2 = float.Parse(table["3"]["name"]);
             stdDev3 = float.Parse(table["4"]["name"]);
@@ -72,9 +72,9 @@ public class carcontrol : MonoBehaviour
 
 
         //每次启动客户端删除之前保存的Log  
-        if (File.Exists(outpath))
+        if (File.Exists(configPath))
         {
-            File.Delete(outpath);
+            File.Delete(configPath);
         }
     }
 
@@ -125,7 +125,7 @@ public class carcontrol : MonoBehaviour
         string[] temp = { randNormal.ToString(), ",", transform.position.x.ToString(), ",", Bezier.pixel[pixelcount-1].y.ToString(), "\r\n" };
         foreach (string t in temp)
         {
-            using (StreamWriter writer = new StreamWriter(outpath, true, Encoding.UTF8))
+            using (StreamWriter writer = new StreamWriter(configPath, true, Encoding.UTF8))
             {
                 writer.Write(t);
             }
