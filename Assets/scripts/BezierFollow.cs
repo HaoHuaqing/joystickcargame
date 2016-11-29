@@ -12,7 +12,7 @@ public class BezierFollow : MonoBehaviour
     Vector3 uppoint = new Vector3(0, 10, 0);
     private int curveCount = 0;
     private int layerOrder = -1;
-    private int SEGMENT_COUNT = 100;
+    private int SEGMENT_COUNT = 200;
     private bool readpoint = true;
 
     void Start()

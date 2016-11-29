@@ -15,7 +15,7 @@ public class Bezier : MonoBehaviour
 
     private int curveCount = 0;
     private int layerOrder = 0;
-    private int SEGMENT_COUNT = 100;
+    private int SEGMENT_COUNT = 200;
     bool roadmove = true;
 
     void Start()
@@ -29,7 +29,7 @@ public class Bezier : MonoBehaviour
 
         for (int i = 1; i < 99; i = i + 2)
         {
-            Rand[i] = 2 * (Random.value * 2 - 1);
+            Rand[i] = 3 * (Random.value * 2 - 1);
             Vector3 RandX = new Vector3(Rand[i], 0, 0);
             CreatPoint[i] = Instantiate(RandomPoint, startPosition.transform.position + i * uppoint + RandX, Quaternion.identity) as GameObject;
             CreatPoint[i + 1] = Instantiate(RandomPoint, startPosition.transform.position + (i + 1) * uppoint, Quaternion.identity) as GameObject;
